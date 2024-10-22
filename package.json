@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "npx ts-node-dev src/index.ts"
   },
   "keywords": [],
   "author": "w3cj <cj@null.computer>",
@@ -14,11 +15,19 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "joi": "^13.3.0",
+    "joi": "^17.13.3",
     "monk": "^6.0.5",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
-    "nodemon": "^1.17.4"
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.7.8",
+    "nodemon": "^1.17.4",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
   }
 }

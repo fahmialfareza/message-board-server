@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const db = require('./connection');
+import Joi from "joi";
+import db from "./connection";
 
 // * username - default to anonymous
 // * subject
@@ -12,22 +12,20 @@ const schema = Joi.object().keys({
   subject: Joi.string().required(),
   message: Joi.string().max(500).required(),
   imageURL: Joi.string().uri({
-    scheme: [
-      /https?/
-    ]
-  })
+    scheme: [/https?/],
+  }),
 });
 
-const messages = db.get('messages');
+const messages = db.get("messages");
 
 function getAll() {
   return messages.find();
 }
 
-function create(message) {
-  if (!message.username) message.username = 'Anonymous';
+function create(message: any) {
+  if (!message.username) message.username = "Anonymous";
 
-  const result = Joi.validate(message, schema);
+  const result = Joi.valid(message, schema);
   if (result.error == null) {
     message.created = new Date();
     return messages.insert(message);
@@ -36,7 +34,7 @@ function create(message) {
   }
 }
 
-module.exports = {
+export default {
   create,
-  getAll
+  getAll,
 };
